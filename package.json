@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/sarahedkins/twitter-js/issues"
   },
-  "homepage": "https://github.com/sarahedkins/twitter-js#readme"
+  "homepage": "https://github.com/sarahedkins/twitter-js#readme",
+  "dependencies": {
+    "express": "^4.13.3"
+  }
 }
