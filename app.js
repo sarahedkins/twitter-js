@@ -11,7 +11,8 @@ app.use(function (req, res, next){
 });
 
 app.get('/', function(req, res){
-  res.send("Hello!");
+  var people = [{name: 'Full'}, {name: 'Stacker'}, {name: 'Son'}];
+  res.render( 'index', {title: 'Hall of Fame', people: people} );
 });
 
 app.get('/news', function(req, res){
@@ -33,5 +34,10 @@ swig.renderFile(__dirname + '/views/index.html', data, function (err, output) {
     console.log(output);
 });
 
+app.engine('html', swig.renderFile);
+app.set('view engine', 'html');
+app.set('views', __dirname + '/views');
+
+swig.setDefaults({ cache: false });   // TURNS OFF SWIG FOR NOW
 
 app.listen(8080, console.log('server listening'));
