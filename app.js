@@ -1,10 +1,12 @@
 var express = require( 'express' );
 var morgan = require('morgan');
 var swig = require('swig');
+var socketio = require('socket.io');
+var bodyParser = require('body-parser');
 var app = express(); // creates an instance of an express application
 var routes = require('./routes/');
 app.use(express.static(__dirname + '/public'))
-app.use('/', routes);
+app.use('/', routes(io));
 
 
 
@@ -45,4 +47,5 @@ app.set('views', __dirname + '/views');
 
 swig.setDefaults({ cache: false });   // TURNS OFF SWIG FOR NOW
 
-app.listen(8080, console.log('server listening'));
+var server = app.listen(8080, console.log('server listening'));
+var io = socketio.listen(server);
