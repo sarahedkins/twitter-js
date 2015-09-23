@@ -2,22 +2,27 @@ var express = require( 'express' );
 var morgan = require('morgan');
 var swig = require('swig');
 var app = express(); // creates an instance of an express application
+var routes = require('./routes/');
+app.use(express.static(__dirname + '/public'))
+app.use('/', routes);
 
-app.use(function (req, res, next){
-  console.log("Verb:",req.method);
-  console.log("URL:",req.url);
-  console.log("Status",res.statusCode);
-  next();
-});
 
-app.get('/', function(req, res){
-  var people = [{name: 'Full'}, {name: 'Stacker'}, {name: 'Son'}];
-  res.render( 'index', {title: 'Hall of Fame', people: people} );
-});
 
-app.get('/news', function(req, res){
-  res.send("This is the news!");
-});
+// app.use(function (req, res, next){
+//   console.log("Verb:",req.method);
+//   console.log("URL:",req.url);
+//   console.log("Status",res.statusCode);
+//   next();
+// });
+
+// app.get('/', function(req, res){
+//   var people = [{name: 'Full'}, {name: 'Stacker'}, {name: 'Son'}];
+//   res.render( 'index', {title: 'Hall of Fame', people: people} );
+// });
+
+// app.get('/news', function(req, res){
+//   res.send("This is the news!");
+// });
 
 // DATA FOR SWIG
 var data = {
